@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Number guessing game</title>
+
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+
+        .form input[type="text"] {
+            width: 200px;
+        }
+
+        .lastResult {
+            color: white;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Number guessing game</h1>
+
+    <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you
+        if your guess was too high or too low.</p>
+
+    <div class="form">
+        <label for="guessField"> Enter a guess: </label>
+        <input type="text" min="1" max="100" required id="guessField" class="guessField">
+        <input type="submit" value="Submit guess" class="guessSubmit" id= "submitguess">
+        <input type="button" value="Start new game" id="resetbutton" >
+    </div>
+
+    <div class="resultParas">
+        <p class="guesses"></p>
+        <p class="lastResult"></p>
+        <p class="lowOrHi"></p>
+    </div>
+
+    <script>
+       
+       // random number
+            let num = Math.floor(Math.random() * 100+1);
+          console.log(num);
+        //counting the number of guesses
+            let guess = 0;
+            document.getElementById("resetbutton").style.display ='none';
+            document.getElementById("submitguess").onclick = function (){
+            let guessNum = document.getElementById("guessField").value;
+           
+                while(guess < 10){		
+
+                if (guessNum == num){
+                    alert("Answer!");
+                    break;
+                }
+                else if (guessNum > num){
+                    guess++;
+                    alert("Wrong answer : " + guessNum + " " + ", Chance : " + guess);
+                    alert ("too high");
+                    break;
+                }
+                else {
+                    guess++;
+                    alert("Wrong answer : " + guessNum + " " + ", Chance : " + guess);
+                    alert ("too low");
+                    break;
+                } 
+                } 
+                
+                if (guess == 3) {
+                    document.getElementById("resetbutton").style.display ='block';
+                    document.getElementById("resetbutton").onclick = function() {
+                    alert("reset~");
+                    document.getElementById("guessField").value = null;
+                    };
+                    
+                }
+            }
+        
+           
+    </script>
+  
+</body>
+
+</html>
